@@ -64,5 +64,5 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 > Execution is making the right things inevitable.
 
 <p align="center">
-  <sub>Vadodara, India · open to consulting & strategy roles</sub>
+  <sub>Ankleshwar, India · open to consulting & strategy roles</sub>
 </p>
