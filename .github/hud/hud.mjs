@@ -113,8 +113,10 @@ function draw(t) {
   const bw = W / weekly.length;
   let towers = '', wins = '', sparks = '';
   weekly.forEach((c, i) => {
-    const h = 22 + Math.round((c / maxWeek) * 112) + Math.round(rnd() * 12);
-    const x = i * bw, y = HORIZON - h;
+    const x = i * bw;
+    let h = 22 + Math.round((c / maxWeek) * 112) + Math.round(rnd() * 12);
+    if (x > 840) h = Math.min(h, 80); // keep the cash/text corner clear
+    const y = HORIZON - h;
     towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${(bw + 0.6).toFixed(1)}" height="${h}"/>`;
     if (rnd() < 0.25) towers += `<rect x="${(x + bw * 0.4).toFixed(1)}" y="${y - 10}" width="1.4" height="10"/>`;
     const density = 0.1 + (c / maxWeek) * 0.55;
@@ -141,7 +143,8 @@ function draw(t) {
 
   // cash odometer
   const MX = 1164, MY = 118, MS = 60, LH = MS * 1.1, DIGIT = 36, COMMA = 14, DOLLAR = 34;
-  const chars = ('$' + fmt(total)).split('');
+  const RATE = 100; // $ per contribution
+  const chars = ('$' + fmt(total * RATE)).split('');
   const widths = chars.map((c) => (c === ',' ? COMMA : c === '$' ? DOLLAR : DIGIT));
   let mx = MX - widths.reduce((a, b) => a + b, 0), odo = '';
   chars.forEach((c, i) => {
@@ -212,7 +215,7 @@ text{fill:${t.ink}}
 <rect y="${HORIZON - 120}" width="${W}" height="120" fill="url(#haze)"/>
 <g fill="${t.city}">${towers}</g>
 <g class="win">${wins}</g><g class="spk">${sparks}</g>
-${palm(150, 120, 1)}${palm(196, 92, 0.85)}${palm(905, 132, 1.05)}${palm(1068, 104, 0.9)}
+${palm(150, 120, 1)}${palm(196, 92, 0.85)}${palm(1010, 70, 0.8)}${palm(1120, 58, 0.7)}
 <rect y="${HORIZON}" width="${W}" height="${H - HORIZON}" fill="${t.road}"/>
 <g fill="${t.lane}">${Array.from({ length: 60 }, (_, i) => `<circle cx="${i * 20 + 10}" cy="${HORIZON + 26}" r="1.4"/>`).join('')}</g>
 <g>${Array.from({ length: 7 }, (_, i) => `<rect class="car" x="0" y="${HORIZON + 19}" width="14" height="3" rx="1.5" fill="${SPARK}" style="animation-duration:${(7 + i * 1.3).toFixed(1)}s;animation-delay:-${(i * 2.1).toFixed(1)}s"/>`).join('')}
@@ -239,14 +242,14 @@ ${txt(RX + 204, RY + RH + 38, `BEST ${best}D`, 'mono')}
 <!-- wanted + cash -->
 ${stars}
 <g clip-path="url(#cash)">${odo}</g>
-<g class="dl">${txt(MX, MY + 40, `+$${fmt(week)}`, 'delta', 'text-anchor="end"')}</g>
+<g class="dl">${txt(MX, MY + 40, `+$${fmt(week * RATE)}`, 'delta', 'text-anchor="end"')}</g>
 ${txt(MX, MY + 70, 'contributions this year, paid in cash', 'hand', 'text-anchor="end"')}
 ${txt(MX, MY + 94, `${repos} OPEN REPOS · @${login.toUpperCase()}`, 'mono', 'text-anchor="end"')}
 ${txt(MX, H - 22, `ANKLESHWAR · ${stamp}`, 'mono mute', 'text-anchor="end"')}
 
 <!-- mission passed -->
 <g class="pass">
-<rect x="260" y="146" width="680" height="104" fill="url(#band)"/>
+<rect x="330" y="146" width="540" height="104" fill="url(#band)"/>
 ${txt(600, 208, 'mission passed.', 'mp', 'text-anchor="middle"')}
 ${txt(600, 236, `${fmt(total)} CONTRIBUTIONS THIS YEAR · STREAK ${streak} DAY${streak === 1 ? '' : 'S'}`, 'sub', 'text-anchor="middle"')}
 </g>

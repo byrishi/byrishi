@@ -73,7 +73,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
       <br />
       <sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub>
       <br />
-      <a href="https://github.com/byrishi/Relay/stargazers"><img src="https://img.shields.io/github/stars/byrishi/Relay?style=flat-square&label=stars&color=1631E0&labelColor=0E1233" alt="Relay stars" /></a> <a href="https://github.com/byrishi/Relay/commits"><img src="https://img.shields.io/github/last-commit/byrishi/Relay?style=flat-square&label=updated&color=1631E0&labelColor=0E1233" alt="Relay last commit" /></a>
+      <a href="https://github.com/byrishi/Relay/stargazers"><img src="https://img.shields.io/github/stars/byrishi/Relay?style=flat-square&label=stars&color=1631E0&labelColor=0E1233" alt="Relay stars" /></a>&nbsp;&nbsp;<a href="https://github.com/byrishi/Relay/commits"><img src="https://img.shields.io/github/last-commit/byrishi/Relay?style=flat-square&label=updated&color=1631E0&labelColor=0E1233" alt="Relay last commit" /></a>
     </td>
     <td width="50%" valign="top">
       <a href="https://helio.rishishah.in"><img src="assets/projects/helio.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a>
@@ -82,7 +82,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
       <br />
       <sub><a href="https://helio.rishishah.in">helio.rishishah.in</a> · <a href="https://helio.rishishah.in/demo">Live demo</a> · <a href="https://github.com/byrishi/helio">Source</a> · MIT</sub>
       <br />
-      <a href="https://github.com/byrishi/helio/stargazers"><img src="https://img.shields.io/github/stars/byrishi/helio?style=flat-square&label=stars&color=ff5e1f&labelColor=101418" alt="Helio stars" /></a> <a href="https://github.com/byrishi/helio/commits"><img src="https://img.shields.io/github/last-commit/byrishi/helio?style=flat-square&label=updated&color=ff5e1f&labelColor=101418" alt="Helio last commit" /></a>
+      <a href="https://github.com/byrishi/helio/stargazers"><img src="https://img.shields.io/github/stars/byrishi/helio?style=flat-square&label=stars&color=ff5e1f&labelColor=101418" alt="Helio stars" /></a>&nbsp;&nbsp;<a href="https://github.com/byrishi/helio/commits"><img src="https://img.shields.io/github/last-commit/byrishi/helio?style=flat-square&label=updated&color=ff5e1f&labelColor=101418" alt="Helio last commit" /></a>
     </td>
   </tr>
 </table>
@@ -102,7 +102,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 </picture>
 </a>
 
-<sub>Cash = contributions this year · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every hour.</sub>
+<sub>Cash = contributions this year × $100 · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every hour.</sub>
 
 ### Sound
 
