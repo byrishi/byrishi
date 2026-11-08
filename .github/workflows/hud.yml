@@ -1,0 +1,38 @@
+name: Profile HUD
+
+on:
+  schedule:
+    - cron: "17 19 * * *" # 00:47 IST
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/hud/**", ".github/workflows/hud.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hud
+  cancel-in-progress: true
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Draw HUD
+        run: node .github/hud/hud.mjs "${{ github.repository_owner }}" dist/gta-hud.svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to output branch
+        run: |
+          cd dist
+          git init -q -b output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gta-hud.svg
+          git commit -q -m "Update HUD"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" output

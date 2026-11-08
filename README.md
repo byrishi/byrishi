@@ -88,6 +88,12 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 | **[Zenodo Certificate Maker](https://github.com/byrishi/ZENODO_CERT_MAKER)** | Turns a Zenodo record into a print-ready A4 certificate, because academia wants paper. |
 | **[VaultNote](https://github.com/byrishi/Vault-Note)** | Local-first encrypted notes. Everything is sealed in your browser with AES-GCM. |
 
+### Activity
+
+<a href="https://github.com/byrishi"><img src="https://raw.githubusercontent.com/byrishi/byrishi/output/gta-hud.svg" width="100%" alt="GitHub activity as a game HUD: contributions this year, wanted level from the last 7 days, streak bars and a minimap of recent weeks" /></a>
+
+<sub>Cash = contributions this year · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every night.</sub>
+
 ### Sound
 
 [Thepla Theorist](https://direct.me/theplatheorist) · [Rishi Shah Beatz](https://www.hopp.bio/rishishahbeatz) · [Discography](https://links.rishishah.in/discography)
