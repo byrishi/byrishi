@@ -72,6 +72,8 @@ I’m particularly interested in **strategy, market analysis, operating models, 
       <b><a href="https://relay.rishishah.in">Relay</a></b> · Free, peer-to-peer file transfer in the browser. End-to-end encrypted, nothing uploaded, no account, no size limit.
       <br />
       <sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub>
+      <br />
+      <a href="https://github.com/byrishi/Relay/stargazers"><img src="https://img.shields.io/github/stars/byrishi/Relay?style=flat-square&label=stars&color=1631E0&labelColor=0E1233" alt="Relay stars" /></a> <a href="https://github.com/byrishi/Relay/commits"><img src="https://img.shields.io/github/last-commit/byrishi/Relay?style=flat-square&label=updated&color=1631E0&labelColor=0E1233" alt="Relay last commit" /></a>
     </td>
     <td width="50%" valign="top">
       <a href="https://helio.rishishah.in"><img src="assets/projects/helio.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a>
@@ -79,6 +81,8 @@ I’m particularly interested in **strategy, market analysis, operating models, 
       <b><a href="https://helio.rishishah.in">Helio</a></b> · A free, open-source dashboard that shows exactly what your rooftop solar made today.
       <br />
       <sub><a href="https://helio.rishishah.in">helio.rishishah.in</a> · <a href="https://helio.rishishah.in/demo">Live demo</a> · <a href="https://github.com/byrishi/helio">Source</a> · MIT</sub>
+      <br />
+      <a href="https://github.com/byrishi/helio/stargazers"><img src="https://img.shields.io/github/stars/byrishi/helio?style=flat-square&label=stars&color=ff5e1f&labelColor=101418" alt="Helio stars" /></a> <a href="https://github.com/byrishi/helio/commits"><img src="https://img.shields.io/github/last-commit/byrishi/helio?style=flat-square&label=updated&color=ff5e1f&labelColor=101418" alt="Helio last commit" /></a>
     </td>
   </tr>
 </table>
@@ -92,7 +96,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 <a href="https://github.com/byrishi"><img src="https://raw.githubusercontent.com/byrishi/byrishi/output/gta-hud.svg" width="100%" alt="GitHub activity as a game HUD: contributions this year, wanted level from the last 7 days, streak bars and a minimap of recent weeks" /></a>
 
-<sub>Cash = contributions this year · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every night.</sub>
+<sub>Cash = contributions this year · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every hour.</sub>
 
 ### Sound
 

@@ -40,7 +40,7 @@ async function load() {
 
 const { weeks, repos } = await load();
 const days = weeks.flatMap((w) => w.contributionDays);
-const today = new Date().toISOString().slice(0, 10);
+const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 const past = days.filter((d) => d.date <= today);
 const total = past.reduce((a, d) => a + d.contributionCount, 0);
 const last = (n) => past.slice(-n).reduce((a, d) => a + d.contributionCount, 0);
@@ -136,7 +136,8 @@ for (let k = 0; k < 5; k++) {
 }
 
 const bar = (x, y, w, frac, color, dim) => `<rect x="${x}" y="${y}" width="${w}" height="9" fill="${dim}"/><rect x="${x}" y="${y}" width="${Math.max(2, w * Math.min(1, frac)).toFixed(1)}" height="9" fill="${color}" class="fill"/>`;
-const stamp = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }).toUpperCase();
+const now = new Date();
+const stamp = `${now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }).toUpperCase()} · ${now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' })} IST`;
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
 <defs>

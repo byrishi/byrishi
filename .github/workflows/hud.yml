@@ -2,7 +2,7 @@ name: Profile HUD
 
 on:
   schedule:
-    - cron: "17 19 * * *" # 00:47 IST
+    - cron: "7 * * * *" # every hour
   workflow_dispatch:
   push:
     branches: [main]
