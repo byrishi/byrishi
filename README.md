@@ -67,22 +67,22 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 <table>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://relay.rishishah.in"><img src="assets/projects/relay.svg" width="100%" alt="Relay: send files straight to another device" /></a>
-      <br />
-      <b><a href="https://relay.rishishah.in">Relay</a></b> · Free, peer-to-peer file transfer in the browser. End-to-end encrypted, nothing uploaded, no account, no size limit.
-      <br />
-      <sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub>
-      <br />
-      <a href="https://github.com/byrishi/Relay/stargazers"><img src="https://img.shields.io/github/stars/byrishi/Relay?style=flat-square&label=stars&color=1631E0&labelColor=0E1233" alt="Relay stars" /></a>&nbsp;&nbsp;<a href="https://github.com/byrishi/Relay/commits"><img src="https://img.shields.io/github/last-commit/byrishi/Relay?style=flat-square&label=updated&color=1631E0&labelColor=0E1233" alt="Relay last commit" /></a>
+      <p><a href="https://relay.rishishah.in"><img src="assets/projects/relay.svg" width="100%" alt="Relay: send files straight to another device" /></a></p>
+      <p><b><a href="https://relay.rishishah.in">Relay</a></b> · Free, peer-to-peer file transfer in the browser. End-to-end encrypted, nothing uploaded, no account, no size limit.</p>
+      <p><sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub></p>
+      <p>
+        <a href="https://github.com/byrishi/Relay/stargazers"><img src="https://img.shields.io/github/stars/byrishi/Relay?style=flat-square&label=stars&color=1631E0&labelColor=0E1233" alt="Relay stars" /></a>&nbsp;&nbsp;
+        <a href="https://github.com/byrishi/Relay/commits"><img src="https://img.shields.io/github/last-commit/byrishi/Relay?style=flat-square&label=last%20commit&color=1631E0&labelColor=0E1233" alt="Relay last commit" /></a>
+      </p>
     </td>
     <td width="50%" valign="top">
-      <a href="https://helio.rishishah.in"><img src="assets/projects/helio.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a>
-      <br />
-      <b><a href="https://helio.rishishah.in">Helio</a></b> · A free, open-source dashboard that shows exactly what your rooftop solar made today.
-      <br />
-      <sub><a href="https://helio.rishishah.in">helio.rishishah.in</a> · <a href="https://helio.rishishah.in/demo">Live demo</a> · <a href="https://github.com/byrishi/helio">Source</a> · MIT</sub>
-      <br />
-      <a href="https://github.com/byrishi/helio/stargazers"><img src="https://img.shields.io/github/stars/byrishi/helio?style=flat-square&label=stars&color=ff5e1f&labelColor=101418" alt="Helio stars" /></a>&nbsp;&nbsp;<a href="https://github.com/byrishi/helio/commits"><img src="https://img.shields.io/github/last-commit/byrishi/helio?style=flat-square&label=updated&color=ff5e1f&labelColor=101418" alt="Helio last commit" /></a>
+      <p><a href="https://helio.rishishah.in"><img src="assets/projects/helio.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a></p>
+      <p><b><a href="https://helio.rishishah.in">Helio</a></b> · A free, open-source dashboard that shows exactly what your rooftop solar made today.</p>
+      <p><sub><a href="https://helio.rishishah.in">helio.rishishah.in</a> · <a href="https://helio.rishishah.in/demo">Live demo</a> · <a href="https://github.com/byrishi/helio">Source</a> · MIT</sub></p>
+      <p>
+        <a href="https://github.com/byrishi/helio/stargazers"><img src="https://img.shields.io/github/stars/byrishi/helio?style=flat-square&label=stars&color=ff5e1f&labelColor=101418" alt="Helio stars" /></a>&nbsp;&nbsp;
+        <a href="https://github.com/byrishi/helio/commits"><img src="https://img.shields.io/github/last-commit/byrishi/helio?style=flat-square&label=last%20commit&color=ff5e1f&labelColor=101418" alt="Helio last commit" /></a>
+      </p>
     </td>
   </tr>
 </table>
