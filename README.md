@@ -1,68 +1,109 @@
-<p align="center">
-  <img src="assets/hero.svg" width="100%" alt="Rishi Shah — growth by day, builder by night, producer at 3 a.m." />
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
+  <img alt="Rishi Shah" src="assets/banner-dark.png" width="100%">
+</picture>
 
-<p align="center">
-  <a href="https://rishishah.in"><img src="https://img.shields.io/badge/rishishah.in-0b0b0b?style=flat-square&logo=googlechrome&logoColor=ededed" alt="Website" /></a>
-  <a href="https://x.com/rishhishah"><img src="https://img.shields.io/badge/@rishhishah-0b0b0b?style=flat-square&logo=x&logoColor=ededed" alt="X" /></a>
-  <a href="https://relay.rishishah.in"><img src="https://img.shields.io/badge/Relay-live-7c9cff?style=flat-square&labelColor=0b0b0b" alt="Relay live" /></a>
-  <a href="https://helio.rishishah.in"><img src="https://img.shields.io/badge/Helio-live-ff5e1f?style=flat-square&labelColor=0b0b0b" alt="Helio live" /></a>
-</p>
+## Profile
 
-<br />
+I work on **ambiguous problems at the intersection of business, product, and execution**.
 
-<img src="assets/now.svg" width="100%" alt="now: growth manager by day, open-source tools by night, audio DSP in the lab, music as Thepla Theorist" />
+My background spans **SaaS, product management, creative systems, and early-stage ventures**, where I’ve translated unclear problem statements into structured actions and shipped outcomes under constraints.
 
-<br />
+I’m particularly interested in **strategy, market analysis, operating models, and execution planning**.
 
-### ◐ &nbsp;Open work
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/divider-dark.svg">
+  <img alt="" src="assets/divider-light.svg" width="100%">
+</picture>
 
-<sub>Things you can fork, run and read. Click a card to open the repo.</sub>
-
-<table>
-  <tr>
-    <td width="50%"><a href="https://github.com/byrishi/Relay"><img src="assets/cards/relay.svg" width="100%" alt="Relay — browser-to-browser encrypted file transfer" /></a></td>
-    <td width="50%"><a href="https://github.com/byrishi/helio"><img src="assets/cards/helio.svg" width="100%" alt="Helio — open-source rooftop solar dashboard" /></a></td>
-  </tr>
-  <tr>
-    <td width="50%"><a href="https://github.com/byrishi/Vault-Note"><img src="assets/cards/vaultnote.svg" width="100%" alt="VaultNote — local-first encrypted notes" /></a></td>
-    <td width="50%"><a href="https://github.com/byrishi/ZENODO_CERT_MAKER"><img src="assets/cards/zenodo.svg" width="100%" alt="Zenodo Certificate Maker" /></a></td>
-  </tr>
-  <tr>
-    <td width="50%"><a href="https://github.com/byrishi/zomodo"><img src="assets/cards/zomoda.svg" width="100%" alt="Zomòda — retail marketing site" /></a></td>
-    <td width="50%"><a href="https://rishishah.in"><img src="assets/cards/lab.svg" width="100%" alt="The Lab — everything else at rishishah.in" /></a></td>
-  </tr>
-</table>
-
-<br />
-
-### ◑ &nbsp;How I build
+## Consulting Lens
 
 ```txt
-01  Your data stays on your device unless it has a reason not to.
-02  No accounts, no uploads, no tracking cookies, if I can avoid them.
-03  Every pixel should mean something. Remove the rest.
-04  Free to host, open to read, credited when reused.
+• Problem structuring & hypothesis-driven thinking
+• Market & user analysis
+• Product and GTM alignment
+• Operating under constraints
+• Decision-making with incomplete information
 ```
 
-<br />
+## Experience Themes
 
-### ◒ &nbsp;Toolbox
+<details>
+<summary><b>Product & Business Ownership</b></summary>
 
-<p>
-  <img src="https://img.shields.io/badge/TypeScript-0b0b0b?style=flat-square&logo=typescript&logoColor=3178c6" />
-  <img src="https://img.shields.io/badge/Next.js-0b0b0b?style=flat-square&logo=nextdotjs&logoColor=ededed" />
-  <img src="https://img.shields.io/badge/React-0b0b0b?style=flat-square&logo=react&logoColor=61dafb" />
-  <img src="https://img.shields.io/badge/Tailwind-0b0b0b?style=flat-square&logo=tailwindcss&logoColor=38bdf8" />
-  <img src="https://img.shields.io/badge/shadcn%2Fui-0b0b0b?style=flat-square&logo=shadcnui&logoColor=ededed" />
-  <img src="https://img.shields.io/badge/GSAP-0b0b0b?style=flat-square&logo=greensock&logoColor=88ce02" />
-  <img src="https://img.shields.io/badge/WebRTC-0b0b0b?style=flat-square&logo=webrtc&logoColor=ededed" />
-  <img src="https://img.shields.io/badge/WebGL%20%2F%20GLSL-0b0b0b?style=flat-square&logo=webgl&logoColor=ededed" />
-  <img src="https://img.shields.io/badge/Web%20Audio%20%2F%20DSP-0b0b0b?style=flat-square&logo=audiomack&logoColor=ffa200" />
-</p>
+- End-to-end ownership across multiple product initiatives  
+- Framing ambiguous business problems into executable roadmaps  
+- Supporting go-to-market planning and UX decisions  
+- Balancing speed, quality, and business impact  
 
-<br />
+</details>
 
-<p align="center">
-  <sub>Ahmedabad, India &nbsp;·&nbsp; open to collaborations, odd ideas and good music</sub>
-</p>
+<details>
+<summary><b>Entrepreneurial & Zero-to-One Work</b></summary>
+
+- Built and launched SaaS products with real users  
+- Worked across ideation, validation, execution, and iteration  
+- Learned prioritization through real constraints  
+
+</details>
+
+<details>
+<summary><b>Creative Systems as Leverage</b></summary>
+
+- Led scalable creative workflows and communities  
+- Used storytelling and design to improve clarity and adoption  
+- Applied systems thinking beyond traditional tech domains  
+
+</details>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/divider-dark.svg">
+  <img alt="" src="assets/divider-light.svg" width="100%">
+</picture>
+
+## Things I've made
+
+| | |
+|---|---|
+| **[Relay](https://github.com/byrishi/Relay)** | Send files straight from one browser to another. End-to-end encrypted, nothing stored in between. [Live ↗](https://relay.rishishah.in) |
+| **[Helio](https://github.com/byrishi/helio)** | Open-source dashboard for what your rooftop solar actually generates. [Live ↗](https://helio.rishishah.in) |
+| **[VaultNote](https://github.com/byrishi/Vault-Note)** | Local-first encrypted notes. Everything is sealed in your browser with AES-GCM. |
+| **[Zenodo Certificate Maker](https://github.com/byrishi/ZENODO_CERT_MAKER)** | Turns a Zenodo record into a print-ready A4 certificate, because academia wants paper. |
+| **[Zomòda](https://github.com/byrishi/zomodo)** | Marketing site for a fair-price retail concept. Next.js, GSAP scroll assembly, Lenis. |
+
+### Sound
+
+[Thepla Theorist](https://direct.me/theplatheorist) · [Rishi Shah Beatz](https://www.hopp.bio/rishishahbeatz) · [Discography](https://links.rishishah.in/discography)
+
+### Stack
+
+Next.js · React · TypeScript · Tailwind · GSAP · WebGL / GLSL · Web Audio
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/divider-dark.svg">
+  <img alt="" src="assets/divider-light.svg" width="100%">
+</picture>
+
+## How I Think
+
+> Strategy is choosing what not to build.  
+> Execution is making the right things inevitable.
+
+<table><tr>
+<td width="140">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/face-blink-dark.svg">
+  <img alt="Hand-drawn portrait of Rishi" src="assets/face-blink-light.svg" width="120">
+</picture>
+</td>
+<td>
+
+**Say hi.** rishi [at] rishishah [dot] in
+
+[rishishah.in](https://rishishah.in) · [X](https://x.com/rishhishah) · [LinkedIn](https://www.linkedin.com/in/rishhishah) · [Peerlist](https://peerlist.io/rishhishah) · [Product Hunt](https://www.producthunt.com/@byrishi) · [Medium](https://rishhishah.medium.com)
+
+<sub>Ahmedabad, India · open to consulting & strategy roles</sub>
+
+</td>
+</tr></table>
