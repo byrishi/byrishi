@@ -64,13 +64,29 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 ## Things I've made
 
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://relay.rishishah.in"><img src="assets/projects/relay.png" width="100%" alt="Relay: send files straight to another device" /></a>
+      <br />
+      <b><a href="https://relay.rishishah.in">Relay</a></b> · Free, peer-to-peer file transfer in the browser. End-to-end encrypted, nothing uploaded, no account, no size limit.
+      <br />
+      <sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://helio.rishishah.in"><img src="assets/projects/helio.png" width="100%" alt="Helio: know exactly what your roof made today" /></a>
+      <br />
+      <b><a href="https://helio.rishishah.in">Helio</a></b> · A free, open-source dashboard that shows exactly what your rooftop solar made today.
+      <br />
+      <sub><a href="https://helio.rishishah.in">helio.rishishah.in</a> · <a href="https://helio.rishishah.in/demo">Live demo</a> · <a href="https://github.com/byrishi/helio">Source</a> · MIT</sub>
+    </td>
+  </tr>
+</table>
+
 | | |
 |---|---|
-| **[Relay](https://github.com/byrishi/Relay)** | Send files straight from one browser to another. End-to-end encrypted, nothing stored in between. [Live ↗](https://relay.rishishah.in) |
-| **[Helio](https://github.com/byrishi/helio)** | Open-source dashboard for what your rooftop solar actually generates. [Live ↗](https://helio.rishishah.in) |
-| **[VaultNote](https://github.com/byrishi/Vault-Note)** | Local-first encrypted notes. Everything is sealed in your browser with AES-GCM. |
 | **[Zenodo Certificate Maker](https://github.com/byrishi/ZENODO_CERT_MAKER)** | Turns a Zenodo record into a print-ready A4 certificate, because academia wants paper. |
-| **[Zomòda](https://github.com/byrishi/zomodo)** | Marketing site for a fair-price retail concept. Next.js, GSAP scroll assembly, Lenis. |
+| **[VaultNote](https://github.com/byrishi/Vault-Note)** | Local-first encrypted notes. Everything is sealed in your browser with AES-GCM. |
 
 ### Sound
 
