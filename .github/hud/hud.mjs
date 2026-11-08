@@ -210,13 +210,13 @@ ${stars}
 <g clip-path="url(#money)" style="stroke-width:5">${odo}</g>
 <g class="delta">${T(MX, MY + 38, `+$${fmt(week)}`, 30, 'text-anchor="end" fill="#72e06a" style="fill:#72e06a" stroke-width="5"')}</g>
 ${T(MX, MY + 64, `${repos} OPEN REPOS · @${login.toUpperCase()}`, 15, 'text-anchor="end" stroke-width="3" opacity=".85"')}
-${T(MX, H - 22, `AHMEDABAD · ${stamp}`, 14, 'text-anchor="end" stroke-width="3" opacity=".7"')}
+${T(MX, H - 22, `ANKLESHWAR · ${stamp}`, 14, 'text-anchor="end" stroke-width="3" opacity=".7"')}
 
 <!-- mission passed -->
 <g class="mp">
 <rect x="250" y="150" width="700" height="96" fill="url(#band)"/>
 <g>${T(600, 210, 'MISSION PASSED', 62, 'text-anchor="middle" letter-spacing="1" style="fill:#f5c242" stroke-width="7"')}</g>
-${T(600, 238, `${fmt(total)} CONTRIBUTIONS THIS YEAR  ·  STREAK ${streak} DAYS`, 17, 'text-anchor="middle" stroke-width="4"')}
+${T(600, 238, `${fmt(total)} CONTRIBUTIONS THIS YEAR  ·  STREAK ${streak} DAY${streak === 1 ? "" : "S"}`, 17, 'text-anchor="middle" stroke-width="4"')}
 </g>
 </svg>`;
 

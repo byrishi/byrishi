@@ -100,7 +100,10 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 ### Stack
 
-Next.js · React · TypeScript · Tailwind · GSAP · WebGL / GLSL · Web Audio
+**Frontend** &nbsp; Next.js · React · TypeScript · Vite · Tailwind · shadcn/ui · GSAP · Lenis · WebGL / GLSL<br>
+**Backend & bots** &nbsp; Python · FastAPI · Node.js · Express · python-telegram-bot · Telegram Mini Apps<br>
+**Real-time & media** &nbsp; WebRTC · Web Audio · Web Crypto · ffmpeg · yt-dlp<br>
+**Ship** &nbsp; Vercel · Render · Oracle Cloud · Cloudflare · Docker · GitHub Actions
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/divider-dark.svg">
@@ -125,7 +128,7 @@ Next.js · React · TypeScript · Tailwind · GSAP · WebGL / GLSL · Web Audio
 
 [rishishah.in](https://rishishah.in) · [X](https://x.com/rishhishah) · [LinkedIn](https://www.linkedin.com/in/rishhishah) · [Peerlist](https://peerlist.io/rishhishah) · [Product Hunt](https://www.producthunt.com/@byrishi) · [Medium](https://rishhishah.medium.com)
 
-<sub>Ahmedabad, India · open to consulting & strategy roles</sub>
+<sub>Ankleshwar, India · open to consulting & strategy roles</sub>
 
 </td>
 </tr></table>
