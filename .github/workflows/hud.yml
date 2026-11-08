@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 22
       - name: Draw HUD
-        run: node .github/hud/hud.mjs "${{ github.repository_owner }}" dist/gta-hud.svg
+        run: node .github/hud/hud.mjs "${{ github.repository_owner }}" dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to output branch
@@ -33,6 +33,6 @@ jobs:
           git init -q -b output
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gta-hud.svg
+          git add .
           git commit -q -m "Update HUD"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" output

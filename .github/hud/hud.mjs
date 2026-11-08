@@ -1,10 +1,11 @@
 // Draws assets for the profile README: a GTA-style HUD built from the GitHub contribution calendar.
-// Usage: GITHUB_TOKEN=... node .github/hud/hud.mjs <login> <out.svg>   (or --sample for local previews)
+// Usage: GITHUB_TOKEN=... node .github/hud/hud.mjs <login> <out-dir>   (add --sample for local previews)
+// Writes gta-hud-dark.svg and gta-hud-light.svg in the brand palette.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const here = path.dirname(new URL(import.meta.url).pathname);
-const [login = 'byrishi', out = 'dist/gta-hud.svg', flag] = process.argv.slice(2);
+const [login = 'byrishi', outDir = 'dist', flag] = process.argv.slice(2);
 
 async function load() {
   if (flag === '--sample') {
@@ -56,171 +57,202 @@ let best = 0, run = 0;
 for (const d of past) { run = d.contributionCount > 0 ? run + 1 : 0; best = Math.max(best, run); }
 const wanted = [0, 1, 5, 10, 20, 35].filter((t) => week >= t).length - 1;
 
+// ── brand ────────────────────────────────────────────────────────────────────
+// Night #0d0d0d · Paper #f6ede2 · Ink #edeae4 / #2b1218 · Plum #5a2333 · Lilac #c9b0e6 · Spark #fa5a00
+const THEMES = {
+  dark: {
+    bg: '#0d0d0d', grid: '#262626', ink: '#edeae4', mute: '#9a958d', outline: '#0d0d0d',
+    sky: ['#0d0d0d', '#1a0f14', '#2b1218', '#5a2333', '#8a3a3a'], haze: '#fa5a00',
+    city: '#0d0d0d', win: '#edeae4', road: '#0d0d0d', lane: '#262626',
+    panel: '#141414', panelLine: '#2a2a2a', cells: ['#262626', '#5a2333', '#8b5a8a', '#c9b0e6', '#fa5a00'],
+    barDim: '#262626', starOff: '#2a2a2a', band: '#0d0d0d',
+  },
+  light: {
+    bg: '#f6ede2', grid: '#ddcbbd', ink: '#2b1218', mute: '#6e4a52', outline: '#f6ede2',
+    sky: ['#f6ede2', '#f3e2d6', '#ecc9c4', '#d9a7b8', '#c9b0e6'], haze: '#fa5a00',
+    city: '#2b1218', win: '#f6ede2', road: '#efe2d4', lane: '#c9a99a',
+    panel: '#2b1218', panelLine: '#5a2333', cells: ['#3d1c25', '#5a2333', '#8b5a8a', '#c9b0e6', '#fa5a00'],
+    barDim: '#ddcbbd', starOff: '#ddcbbd', band: '#f6ede2',
+  },
+};
+const SPARK = '#fa5a00', LILAC = '#c9b0e6', PLUM = '#5a2333';
+
 // ── helpers ──────────────────────────────────────────────────────────────────
 const W = 1200, H = 420, HORIZON = 318;
 const fmt = (n) => n.toLocaleString('en-US');
-const font = fs.readFileSync(path.join(here, 'anton.woff2')).toString('base64');
-let s = 1;
-const hash = () => ((s = (s * 48271) % 2147483647) / 2147483647);
-const T = (x, y, txt, size, extra = '') => `<text x="${x}" y="${y}" font-size="${size}" ${extra}>${txt}</text>`;
-
-// ── skyline: one tower per week, height = that week's contributions ─────────
+const b64 = (f) => fs.readFileSync(path.join(here, f)).toString('base64');
+const FONTS = `@font-face{font-family:IT;src:url(data:font/woff2;base64,${b64('intertight-800.woff2')}) format("woff2");font-weight:800}
+@font-face{font-family:IT;src:url(data:font/woff2;base64,${b64('intertight-500.woff2')}) format("woff2");font-weight:500}
+@font-face{font-family:JB;src:url(data:font/woff2;base64,${b64('jbmono-400.woff2')}) format("woff2")}
+@font-face{font-family:GH;src:url(data:font/woff2;base64,${b64('gochi.woff2')}) format("woff2")}`;
 const weekly = weeks.map((w) => w.contributionDays.reduce((a, d) => a + d.contributionCount, 0));
 const maxWeek = Math.max(1, ...weekly);
-const bw = W / weekly.length;
-let towers = '', windows = '', flick = '';
-weekly.forEach((c, i) => {
-  const h = 26 + Math.round((c / maxWeek) * 150) + Math.round(hash() * 14);
-  const x = i * bw, y = HORIZON - h;
-  towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${(bw + 0.6).toFixed(1)}" height="${h}"/>`;
-  if (hash() < 0.25) towers += `<rect x="${(x + bw * 0.4).toFixed(1)}" y="${y - 10}" width="1.4" height="10"/>`;
-  const density = 0.12 + (c / maxWeek) * 0.6;
-  for (let wy = y + 6; wy < HORIZON - 6; wy += 7) {
-    for (let wx = x + 4; wx < x + bw - 5; wx += 6) {
-      if (hash() < density) {
-        const r = `<rect x="${wx.toFixed(1)}" y="${wy}" width="2.4" height="3"/>`;
-        if (hash() < 0.04) flick += r.replace('/>', ` style="animation-delay:-${(hash() * 6).toFixed(1)}s"/>`);
-        else windows += r;
-      }
-    }
-  }
-});
-const palm = (x, h, k = 1) => `<g transform="translate(${x} ${HORIZON + 2}) scale(${k})"><path d="M0 0 C2 -${h * 0.4} 6 -${h * 0.8} 4 -${h}" stroke="#08060c" stroke-width="4" fill="none"/>
-<g transform="translate(4 -${h})" fill="#08060c"><path d="M0 0 C-12 -10 -30 -6 -40 6 C-26 -2 -12 -2 0 0Z"/><path d="M0 0 C10 -12 30 -10 40 4 C26 -4 12 -4 0 0Z"/><path d="M0 0 C-6 -14 -2 -28 8 -34 C2 -22 2 -12 0 0Z"/><path d="M0 0 C-14 2 -26 14 -28 28 C-18 16 -10 8 0 0Z"/><path d="M0 0 C14 2 26 14 28 28 C18 16 10 8 0 0Z"/></g></g>`;
-
-// ── radar: the last 22 weeks as city blocks ────────────────────────────────
-const RX = 34, RY = 222, RW = 300, RH = 132;
 const recent = weeks.slice(-22);
 const lvl = (c) => (c === 0 ? 0 : c < 3 ? 1 : c < 6 ? 2 : c < 10 ? 3 : 4);
-const tone = ['#3b4743', '#4f7a55', '#5f9c5d', '#7cc56b', '#f0c33c'];
-let blocks = '', bestCell = null, bestCount = -1;
-recent.forEach((w, wi) => w.contributionDays.forEach((d, di) => {
-  const x = wi * 15, y = di * 15;
-  blocks += `<rect x="${x}" y="${y}" width="12" height="12" rx="1.5" fill="${tone[lvl(d.contributionCount)]}"/>`;
-  if (d.contributionCount >= bestCount) { bestCount = d.contributionCount; bestCell = [x + 6, y + 6]; }
-}));
-const gridW = recent.length * 15, gridH = 7 * 15;
-
-// ── money odometer ──────────────────────────────────────────────────────────
-const money = fmt(total);
-const MX = 1164, MY = 118, MS = 58, DIGIT = 30, COMMA = 13;
-let mx = MX, odo = '';
-const chars = ('$' + money).split('');
-const widths = chars.map((c) => (c === ',' ? COMMA : c === '$' ? 28 : DIGIT));
-const fullW = widths.reduce((a, b) => a + b, 0);
-mx = MX - fullW;
-chars.forEach((c, i) => {
-  const cx = mx + widths[i] / 2;
-  if (/\d/.test(c)) {
-    const n = Number(c);
-    const col = Array.from({ length: 10 }, (_, k) => T(cx, MY + k * MS * 1.05, k, MS, 'text-anchor="middle"')).join('');
-    odo += `<g class="odo" style="--to:${(-n * MS * 1.05).toFixed(1)}px;animation-delay:${(0.2 + i * 0.12).toFixed(2)}s">${col}</g>`;
-  } else odo += T(cx, MY, c, MS, 'text-anchor="middle"');
-  mx += widths[i];
-});
-
-// ── wanted stars ────────────────────────────────────────────────────────────
-const star = (cx, cy, r) => {
-  const p = [];
-  for (let k = 0; k < 10; k++) {
-    const a = -Math.PI / 2 + (k * Math.PI) / 5, rr = k % 2 ? r * 0.45 : r;
-    p.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`);
-  }
-  return p.join(' ');
-};
-let stars = '';
-for (let k = 0; k < 5; k++) {
-  const cx = 1150 - (4 - k) * 36;
-  const on = k < wanted;
-  stars += `<polygon points="${star(cx, 42, 15)}" class="${on ? 'star on' : 'star'}" style="animation-delay:${(k * 0.08).toFixed(2)}s"/>`;
-}
-
-const bar = (x, y, w, frac, color, dim) => `<rect x="${x}" y="${y}" width="${w}" height="9" fill="${dim}"/><rect x="${x}" y="${y}" width="${Math.max(2, w * Math.min(1, frac)).toFixed(1)}" height="9" fill="${color}" class="fill"/>`;
 const now = new Date();
 const stamp = `${now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }).toUpperCase()} · ${now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' })} IST`;
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+function draw(t) {
+  let s = 1;
+  const rnd = () => ((s = (s * 48271) % 2147483647) / 2147483647);
+  const txt = (x, y, body, cls, extra = '') => `<text x="${x}" y="${y}" class="${cls}" ${extra}>${body}</text>`;
+
+  // dot grid, like the banner
+  let grid = '';
+  for (let y = 5; y < H; y += 10) for (let x = 5; x < W; x += 10) grid += `<circle cx="${x}" cy="${y}" r="1.1"/>`;
+
+  // sun as a dot-matrix disc
+  let sun = '';
+  const SX = 610, SY = HORIZON - 118, SR = 78;
+  for (let y = SY - SR; y <= SY + SR; y += 8) for (let x = SX - SR; x <= SX + SR; x += 8) {
+    const d = Math.hypot(x - SX, y - SY);
+    if (d <= SR && y < HORIZON) sun += `<circle cx="${x}" cy="${y}" r="${(3.2 - (d / SR) * 1.2).toFixed(2)}"/>`;
+  }
+
+  // skyline: one tower per week, height = that week's contributions; windows are dots
+  const bw = W / weekly.length;
+  let towers = '', wins = '', sparks = '';
+  weekly.forEach((c, i) => {
+    const h = 22 + Math.round((c / maxWeek) * 112) + Math.round(rnd() * 12);
+    const x = i * bw, y = HORIZON - h;
+    towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${(bw + 0.6).toFixed(1)}" height="${h}"/>`;
+    if (rnd() < 0.25) towers += `<rect x="${(x + bw * 0.4).toFixed(1)}" y="${y - 10}" width="1.4" height="10"/>`;
+    const density = 0.1 + (c / maxWeek) * 0.55;
+    for (let wy = y + 7; wy < HORIZON - 6; wy += 8) for (let wx = x + 5; wx < x + bw - 4; wx += 6) {
+      if (rnd() < density) {
+        const dot = `<circle cx="${wx.toFixed(1)}" cy="${wy}" r="1.2"`;
+        if (rnd() < 0.05) sparks += `${dot} style="animation-delay:-${(rnd() * 6).toFixed(1)}s"/>`;
+        else wins += `${dot}/>`;
+      }
+    }
+  });
+  const palm = (x, h, k = 1) => `<g transform="translate(${x} ${HORIZON + 2}) scale(${k})"><path d="M0 0 C2 -${h * 0.4} 6 -${h * 0.8} 4 -${h}" stroke="${t.city}" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g transform="translate(4 -${h})" fill="${t.city}"><path d="M0 0 C-12 -10 -30 -6 -40 6 C-26 -2 -12 -2 0 0Z"/><path d="M0 0 C10 -12 30 -10 40 4 C26 -4 12 -4 0 0Z"/><path d="M0 0 C-6 -14 -2 -28 8 -34 C2 -22 2 -12 0 0Z"/><path d="M0 0 C-14 2 -26 14 -28 28 C-18 16 -10 8 0 0Z"/><path d="M0 0 C14 2 26 14 28 28 C18 16 10 8 0 0Z"/></g></g>`;
+
+  // minimap: last 22 weeks as blocks
+  const RX = 34, RY = 216, RW = 300, RH = 132;
+  let blocks = '', bestCell = [0, 0], bestCount = -1;
+  recent.forEach((w, wi) => w.contributionDays.forEach((d, di) => {
+    const x = wi * 15, y = di * 15;
+    blocks += `<rect x="${x}" y="${y}" width="12" height="12" rx="2" fill="${t.cells[lvl(d.contributionCount)]}"/>`;
+    if (d.contributionCount >= bestCount) { bestCount = d.contributionCount; bestCell = [x + 6, y + 6]; }
+  }));
+  const gridW = recent.length * 15, gridH = 7 * 15;
+
+  // cash odometer
+  const MX = 1164, MY = 118, MS = 60, LH = MS * 1.1, DIGIT = 36, COMMA = 14, DOLLAR = 34;
+  const chars = ('$' + fmt(total)).split('');
+  const widths = chars.map((c) => (c === ',' ? COMMA : c === '$' ? DOLLAR : DIGIT));
+  let mx = MX - widths.reduce((a, b) => a + b, 0), odo = '';
+  chars.forEach((c, i) => {
+    const cx = mx + widths[i] / 2;
+    if (/\d/.test(c)) {
+      const n = Number(c);
+      const col = Array.from({ length: 10 }, (_, k) => txt(cx, (MY + k * LH).toFixed(1), k, 'cash', 'text-anchor="middle"')).join('');
+      odo += `<g class="odo" style="--to:${(-n * LH).toFixed(1)}px;animation-delay:${(0.2 + i * 0.12).toFixed(2)}s">${col}</g>`;
+    } else odo += txt(cx, MY, c, c === '$' ? 'cash dollar' : 'cash', 'text-anchor="middle"');
+    mx += widths[i];
+  });
+
+  // wanted stars
+  const star = (cx, cy, r) => Array.from({ length: 10 }, (_, k) => {
+    const a = -Math.PI / 2 + (k * Math.PI) / 5, rr = k % 2 ? r * 0.45 : r;
+    return `${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`;
+  }).join(' ');
+  let stars = '';
+  for (let k = 0; k < 5; k++) stars += `<polygon points="${star(1150 - (4 - k) * 36, 42, 15)}" class="${k < wanted ? 'star on' : 'star'}" style="animation-delay:${(k * 0.08).toFixed(2)}s"/>`;
+
+  const bar = (x, y, w, frac, color) => `<rect x="${x}" y="${y}" width="${w}" height="8" rx="4" fill="${t.barDim}"/><rect x="${x}" y="${y}" width="${Math.max(8, w * Math.min(1, frac)).toFixed(1)}" height="8" rx="4" fill="${color}" class="fill"/>`;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
 <defs>
 <style>
-@font-face{font-family:Hud;src:url(data:font/woff2;base64,${font}) format("woff2")}
-text{font-family:Hud,Impact,"Arial Narrow",sans-serif;fill:#fff;paint-order:stroke;stroke:#000;stroke-linejoin:round}
+${FONTS}
+text{fill:${t.ink}}
+.cash{font-family:IT;font-weight:800;font-size:${MS}px;letter-spacing:-2px}
+.dollar{fill:${SPARK}}
+.mono{font-family:JB;font-size:12px;letter-spacing:.3px;fill:${t.ink};paint-order:stroke;stroke:${t.bg};stroke-width:4px;stroke-linejoin:round}
+.mute{fill:${t.mute}}
+.hand{font-family:GH;font-size:21px;fill:${SPARK};paint-order:stroke;stroke:${t.bg};stroke-width:5px;stroke-linejoin:round}
+.mp{font-family:IT;font-weight:800;font-size:64px;letter-spacing:-2.5px;fill:${SPARK}}
+.sub{font-family:JB;font-size:14px;letter-spacing:1px;fill:${t.ink}}
+.delta{font-family:IT;font-weight:800;font-size:30px;letter-spacing:-1px;fill:${LILAC};paint-order:stroke;stroke:${t.bg};stroke-width:5px;stroke-linejoin:round}
 .odo{animation:odo 1.6s cubic-bezier(.2,.9,.25,1) both}
-@keyframes odo{from{transform:translateY(${(-9 * MS * 1.05).toFixed(1)}px)}to{transform:translateY(var(--to))}}
-.star{fill:rgba(0,0,0,.35);stroke:rgba(255,255,255,.35);stroke-width:1.5}
-.star.on{fill:#fff;stroke:#000;stroke-width:2.5;animation:flash 1s steps(1) infinite}
-@keyframes flash{50%{fill:#7aa2ff}}
-.flick{animation:flick 6s steps(1) infinite}@keyframes flick{0%,40%{opacity:1}41%,60%{opacity:0}61%{opacity:1}}
+@keyframes odo{from{transform:translateY(${(-9 * LH).toFixed(1)}px)}to{transform:translateY(var(--to))}}
+.star{fill:${t.starOff}}
+.star.on{fill:${t.ink};animation:flash 1s steps(1) infinite}
+@keyframes flash{50%{fill:${SPARK}}}
+.grid{fill:${t.grid}}
+.sun circle{fill:${SPARK}}
+.sun{animation:sun 6s ease-in-out infinite}@keyframes sun{50%{opacity:.75}}
+.win{fill:${t.win};opacity:.55}
+.spk{fill:${SPARK};animation:flick 6s steps(1) infinite}@keyframes flick{0%,40%{opacity:1}41%,60%{opacity:.15}61%{opacity:1}}
 .car{animation:drive linear infinite}@keyframes drive{from{transform:translateX(-60px)}to{transform:translateX(1260px)}}
 .carL{animation:driveL linear infinite}@keyframes driveL{from{transform:translateX(1260px)}to{transform:translateX(-60px)}}
 .me{transform-box:fill-box;transform-origin:center;animation:me 1.6s ease-in-out infinite}@keyframes me{50%{transform:scale(1.25)}}
 .blip{transform-box:fill-box;transform-origin:center;animation:blip 2s ease-out infinite}@keyframes blip{from{transform:scale(1);opacity:.9}to{transform:scale(3.4);opacity:0}}
 .fill{transform-box:fill-box;transform-origin:left;animation:grow 1.4s cubic-bezier(.2,.9,.25,1) .6s both}@keyframes grow{from{transform:scaleX(0)}}
-.mp{opacity:0;animation:mp 14s ease infinite 1.8s}
-@keyframes mp{0%{opacity:0;transform:scale(1.15)}4%{opacity:1;transform:none}30%{opacity:1}36%,100%{opacity:0}}
-.mp g{transform-box:fill-box;transform-origin:center}
-.delta{opacity:0;animation:delta 14s ease infinite 2.6s}@keyframes delta{0%{opacity:0;transform:translateY(8px)}4%,26%{opacity:1;transform:none}32%,100%{opacity:0}}
-.sun{animation:sun 8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes sun{50%{transform:scale(1.04)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.mp,.delta{opacity:1}}
+.pass{opacity:0;animation:pass 14s ease infinite 1.8s}
+@keyframes pass{0%{opacity:0;transform:translateY(10px)}4%{opacity:1;transform:none}30%{opacity:1}36%,100%{opacity:0}}
+.dl{opacity:0;animation:dl 14s ease infinite 2.6s}@keyframes dl{0%{opacity:0;transform:translateY(8px)}4%,26%{opacity:1;transform:none}32%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.pass,.dl{opacity:1}}
 </style>
-<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#0d0b1e"/><stop offset=".35" stop-color="#3b1f4f"/><stop offset=".62" stop-color="#b3445a"/><stop offset=".8" stop-color="#f08a4b"/><stop offset="1" stop-color="#ffc56b"/></linearGradient>
-<radialGradient id="sunG"><stop offset="0" stop-color="#fff4c9"/><stop offset=".55" stop-color="#ffb259"/><stop offset="1" stop-color="#ff6a4a" stop-opacity="0"/></radialGradient>
-<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a5a" stop-opacity="0"/><stop offset="1" stop-color="#ff9a5a" stop-opacity=".35"/></linearGradient>
-<radialGradient id="vig" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
-<linearGradient id="band" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".2" stop-color="#000" stop-opacity=".62"/><stop offset=".8" stop-color="#000" stop-opacity=".62"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
-<clipPath id="radar"><rect x="${RX}" y="${RY}" width="${RW}" height="${RH}" rx="6"/></clipPath>
-<clipPath id="money"><rect x="600" y="${MY - MS + 2}" width="600" height="${MS + 6}"/></clipPath>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">${t.sky.map((c, i) => `<stop offset="${(i / (t.sky.length - 1)).toFixed(2)}" stop-color="${c}"/>`).join('')}</linearGradient>
+<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${t.haze}" stop-opacity="0"/><stop offset="1" stop-color="${t.haze}" stop-opacity=".28"/></linearGradient>
+<linearGradient id="band" x1="0" x2="1"><stop offset="0" stop-color="${t.band}" stop-opacity="0"/><stop offset=".2" stop-color="${t.band}" stop-opacity=".9"/><stop offset=".8" stop-color="${t.band}" stop-opacity=".9"/><stop offset="1" stop-color="${t.band}" stop-opacity="0"/></linearGradient>
+<clipPath id="map"><rect x="${RX}" y="${RY}" width="${RW}" height="${RH}" rx="14"/></clipPath>
+<clipPath id="cash"><rect x="600" y="${MY - MS + 2}" width="600" height="${MS + 8}"/></clipPath>
+<clipPath id="skyclip"><rect width="${W}" height="${HORIZON}"/></clipPath>
 </defs>
 
+<rect width="${W}" height="${H}" fill="${t.bg}"/>
 <rect width="${W}" height="${HORIZON}" fill="url(#sky)"/>
-<circle class="sun" cx="610" cy="${HORIZON - 30}" r="150" fill="url(#sunG)"/>
-<circle cx="610" cy="${HORIZON - 30}" r="54" fill="#fff1c4" opacity=".92"/>
+<g class="grid" opacity=".55">${grid}</g>
+<g class="sun" clip-path="url(#skyclip)">${sun}</g>
 <rect y="${HORIZON - 120}" width="${W}" height="120" fill="url(#haze)"/>
-<g fill="#140d1f">${towers}</g>
-<g fill="#ffcf6e" opacity=".75">${windows}<g class="flick">${flick}</g></g>
+<g fill="${t.city}">${towers}</g>
+<g class="win">${wins}</g><g class="spk">${sparks}</g>
 ${palm(150, 120, 1)}${palm(196, 92, 0.85)}${palm(905, 132, 1.05)}${palm(1068, 104, 0.9)}
-<rect y="${HORIZON}" width="${W}" height="${H - HORIZON}" fill="#0b0810"/>
-<rect y="${HORIZON + 26}" width="${W}" height="2" fill="#2a1d2f"/>
-<g>${Array.from({ length: 7 }, (_, i) => `<rect class="car" x="0" y="${HORIZON + 22}" width="16" height="2.6" rx="1.3" fill="#ff3b30" style="animation-duration:${(7 + i * 1.3).toFixed(1)}s;animation-delay:-${(i * 2.1).toFixed(1)}s"/>`).join('')}
-${Array.from({ length: 7 }, (_, i) => `<rect class="carL" x="0" y="${HORIZON + 30}" width="16" height="2.6" rx="1.3" fill="#fff3c2" style="animation-duration:${(6 + i * 1.1).toFixed(1)}s;animation-delay:-${(i * 1.7).toFixed(1)}s"/>`).join('')}</g>
-<rect width="${W}" height="${H}" fill="url(#vig)"/>
+<rect y="${HORIZON}" width="${W}" height="${H - HORIZON}" fill="${t.road}"/>
+<g fill="${t.lane}">${Array.from({ length: 60 }, (_, i) => `<circle cx="${i * 20 + 10}" cy="${HORIZON + 26}" r="1.4"/>`).join('')}</g>
+<g>${Array.from({ length: 7 }, (_, i) => `<rect class="car" x="0" y="${HORIZON + 19}" width="14" height="3" rx="1.5" fill="${SPARK}" style="animation-duration:${(7 + i * 1.3).toFixed(1)}s;animation-delay:-${(i * 2.1).toFixed(1)}s"/>`).join('')}
+${Array.from({ length: 7 }, (_, i) => `<rect class="carL" x="0" y="${HORIZON + 31}" width="14" height="3" rx="1.5" fill="${LILAC}" style="animation-duration:${(6 + i * 1.1).toFixed(1)}s;animation-delay:-${(i * 1.7).toFixed(1)}s"/>`).join('')}</g>
 
-<!-- radar -->
-<rect x="${RX - 3}" y="${RY - 3}" width="${RW + 6}" height="${RH + 6}" rx="8" fill="#000" opacity=".75"/>
-<g clip-path="url(#radar)">
-<rect x="${RX}" y="${RY}" width="${RW}" height="${RH}" fill="#26312d"/>
-<rect x="${RX}" y="${RY + RH - 34}" width="${RW}" height="40" fill="#2f4a5c" opacity=".8"/>
+<!-- minimap -->
+<rect x="${RX - 3}" y="${RY - 3}" width="${RW + 6}" height="${RH + 6}" rx="17" fill="${t.panel}" stroke="${t.panelLine}"/>
+<g clip-path="url(#map)">
+<rect x="${RX}" y="${RY}" width="${RW}" height="${RH}" fill="${t.panel}"/>
 <g transform="translate(${RX + RW / 2} ${RY + RH / 2 + 6}) scale(1 .62) rotate(-28) translate(${-gridW / 2} ${-gridH / 2})">
 ${blocks}
-<circle class="blip" cx="${bestCell[0]}" cy="${bestCell[1]}" r="6" fill="none" stroke="#f0c33c" stroke-width="2"/>
-<circle cx="${bestCell[0]}" cy="${bestCell[1]}" r="5" fill="#f0c33c" stroke="#000" stroke-width="1.5"/>
+<circle class="blip" cx="${bestCell[0]}" cy="${bestCell[1]}" r="6" fill="none" stroke="${SPARK}" stroke-width="2"/>
+<circle cx="${bestCell[0]}" cy="${bestCell[1]}" r="5" fill="${SPARK}"/>
 </g>
-<path class="me" d="M${RX + RW / 2} ${RY + RH / 2 - 9} l7 17 -7 -4 -7 4z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path class="me" d="M${RX + RW / 2} ${RY + RH / 2 - 9} l7 17 -7 -4 -7 4z" fill="#edeae4" stroke="#0d0d0d" stroke-width="1.5"/>
 </g>
-<circle cx="${RX + RW / 2}" cy="${RY - 1}" r="9" fill="#000" stroke="#fff" stroke-width="1"/>
-${T(RX + RW / 2, RY + 4, 'N', 13, 'text-anchor="middle" stroke-width="0"')}
-${bar(RX, RY + RH + 9, RW * 0.5 - 3, streak / 30, '#5cb85c', '#1f3b22')}
-${bar(RX + RW * 0.5 + 3, RY + RH + 9, RW * 0.25 - 6, active30 / 30, '#4a8fd6', '#1a2e44')}
-${bar(RX + RW * 0.75, RY + RH + 9, RW * 0.25, best / 60, '#e8c33a', '#3d3412')}
-${T(RX, RY + RH + 36, `STREAK ${streak}D`, 14, 'stroke-width="3" opacity=".9"')}
-${T(RX + RW * 0.5 + 3, RY + RH + 36, `ACTIVE ${active30}/30`, 14, 'stroke-width="3" opacity=".9"')}
-${T(RX + RW, RY + RH + 36, `BEST ${best}D`, 14, 'text-anchor="end" stroke-width="3" opacity=".9"')}
+${bar(RX, RY + RH + 12, 96, streak / 30, SPARK)}
+${bar(RX + 102, RY + RH + 12, 96, active30 / 30, LILAC)}
+${bar(RX + 204, RY + RH + 12, 96, best / 60, t.ink)}
+${txt(RX, RY + RH + 38, `STREAK ${streak}D`, 'mono')}
+${txt(RX + 102, RY + RH + 38, `ACTIVE ${active30}/30`, 'mono')}
+${txt(RX + 204, RY + RH + 38, `BEST ${best}D`, 'mono')}
 
-<!-- wanted + money -->
+<!-- wanted + cash -->
 ${stars}
-<g clip-path="url(#money)" style="stroke-width:5">${odo}</g>
-<g class="delta">${T(MX, MY + 38, `+$${fmt(week)}`, 30, 'text-anchor="end" fill="#72e06a" style="fill:#72e06a" stroke-width="5"')}</g>
-${T(MX, MY + 64, `${repos} OPEN REPOS · @${login.toUpperCase()}`, 15, 'text-anchor="end" stroke-width="3" opacity=".85"')}
-${T(MX, H - 22, `ANKLESHWAR · ${stamp}`, 14, 'text-anchor="end" stroke-width="3" opacity=".7"')}
+<g clip-path="url(#cash)">${odo}</g>
+<g class="dl">${txt(MX, MY + 40, `+$${fmt(week)}`, 'delta', 'text-anchor="end"')}</g>
+${txt(MX, MY + 70, 'contributions this year, paid in cash', 'hand', 'text-anchor="end"')}
+${txt(MX, MY + 94, `${repos} OPEN REPOS · @${login.toUpperCase()}`, 'mono', 'text-anchor="end"')}
+${txt(MX, H - 22, `ANKLESHWAR · ${stamp}`, 'mono mute', 'text-anchor="end"')}
 
 <!-- mission passed -->
-<g class="mp">
-<rect x="250" y="150" width="700" height="96" fill="url(#band)"/>
-<g>${T(600, 210, 'MISSION PASSED', 62, 'text-anchor="middle" letter-spacing="1" style="fill:#f5c242" stroke-width="7"')}</g>
-${T(600, 238, `${fmt(total)} CONTRIBUTIONS THIS YEAR  ·  STREAK ${streak} DAY${streak === 1 ? "" : "S"}`, 17, 'text-anchor="middle" stroke-width="4"')}
+<g class="pass">
+<rect x="260" y="146" width="680" height="104" fill="url(#band)"/>
+${txt(600, 208, 'mission passed.', 'mp', 'text-anchor="middle"')}
+${txt(600, 236, `${fmt(total)} CONTRIBUTIONS THIS YEAR · STREAK ${streak} DAY${streak === 1 ? '' : 'S'}`, 'sub', 'text-anchor="middle"')}
 </g>
 </svg>`;
+}
 
-fs.mkdirSync(path.dirname(out), { recursive: true });
-fs.writeFileSync(out, svg);
-console.log(`wrote ${out}: total=${total} week=${week} wanted=${wanted} streak=${streak} best=${best} active30=${active30}`);
+fs.mkdirSync(outDir, { recursive: true });
+for (const [name, t] of Object.entries(THEMES)) fs.writeFileSync(path.join(outDir, `gta-hud-${name}.svg`), draw(t));
+console.log(`wrote ${outDir}: total=${total} week=${week} wanted=${wanted} streak=${streak} best=${best} active30=${active30}`);

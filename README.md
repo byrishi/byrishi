@@ -94,7 +94,13 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 ### Activity
 
-<a href="https://github.com/byrishi"><img src="https://raw.githubusercontent.com/byrishi/byrishi/output/gta-hud.svg" width="100%" alt="GitHub activity as a game HUD: contributions this year, wanted level from the last 7 days, streak bars and a minimap of recent weeks" /></a>
+<a href="https://github.com/byrishi">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/byrishi/byrishi/output/gta-hud-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/byrishi/byrishi/output/gta-hud-light.svg">
+  <img src="https://raw.githubusercontent.com/byrishi/byrishi/output/gta-hud-dark.svg" width="100%" alt="GitHub activity as a game HUD: contributions this year, wanted level from the last 7 days, streak bars and a minimap of recent weeks" />
+</picture>
+</a>
 
 <sub>Cash = contributions this year · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every hour.</sub>
 
