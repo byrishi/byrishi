@@ -129,7 +129,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 <td width="140">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/face-blink-dark.svg">
-  <img alt="Hand-drawn portrait of Rishi" src="assets/face-blink-light.svg" width="120">
+  <img alt="Hand-drawn portrait of Rishi" src="assets/face-blink-light.svg" width="130">
 </picture>
 </td>
 <td>
