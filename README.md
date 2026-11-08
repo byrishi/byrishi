@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
-  <img alt="Rishi Shah" src="assets/banner-dark.png" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
+  <img alt="Rishi Shah" src="assets/banner-dark.svg" width="100%">
 </picture>
 
 ## Profile
@@ -67,14 +67,14 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 <table>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://relay.rishishah.in"><img src="assets/projects/relay.png" width="100%" alt="Relay: send files straight to another device" /></a>
+      <a href="https://relay.rishishah.in"><img src="assets/projects/relay.svg" width="100%" alt="Relay: send files straight to another device" /></a>
       <br />
       <b><a href="https://relay.rishishah.in">Relay</a></b> · Free, peer-to-peer file transfer in the browser. End-to-end encrypted, nothing uploaded, no account, no size limit.
       <br />
       <sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub>
     </td>
     <td width="50%" valign="top">
-      <a href="https://helio.rishishah.in"><img src="assets/projects/helio.png" width="100%" alt="Helio: know exactly what your roof made today" /></a>
+      <a href="https://helio.rishishah.in"><img src="assets/projects/helio.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a>
       <br />
       <b><a href="https://helio.rishishah.in">Helio</a></b> · A free, open-source dashboard that shows exactly what your rooftop solar made today.
       <br />
