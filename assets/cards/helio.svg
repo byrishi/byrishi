@@ -1,0 +1,36 @@
+<svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0"/></filter>
+<radialGradient id="glow" cx="85%" cy="15%" r="70%"><stop offset="0" stop-color="#ff5e1f" stop-opacity=".22"/><stop offset="1" stop-color="#ff5e1f" stop-opacity="0"/></radialGradient>
+<style>
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+</style>
+</defs>
+<rect x=".5" y=".5" width="599" height="299" rx="18" fill="#0b0b0b" stroke="#222"/>
+<rect width="600" height="300" rx="18" fill="url(#glow)"/>
+<rect width="600" height="300" rx="18" filter="url(#grain)"/>
+<circle cx="38" cy="40" r="4" fill="#ff5e1f"/>
+<text x="50" y="44" class="mono" font-size="11" fill="#6b6b6b" letter-spacing="1.5">OPEN SOURCE · MIT</text>
+<text x="32" y="150" class="sans" font-size="40" font-weight="700" fill="#ededed" letter-spacing="-1.5">Helio</text>
+<text x="32" y="184" class="sans" font-size="15" fill="#9a9a9a">Know exactly what your roof made today. A private,</text>
+<text x="32" y="206" class="sans" font-size="15" fill="#9a9a9a">open-source dashboard for rooftop solar.</text>
+<rect x="32" y="244" width="72" height="26" rx="13" fill="none" stroke="#2a2a2a"/><text x="68" y="261" text-anchor="middle" class="mono" font-size="11" fill="#9a9a9a">Next.js</text><rect x="111.80000000000001" y="244" width="94" height="26" rx="13" fill="none" stroke="#2a2a2a"/><text x="159" y="261" text-anchor="middle" class="mono" font-size="11" fill="#9a9a9a">TypeScript</text><rect x="213.8" y="244" width="79" height="26" rx="13" fill="none" stroke="#2a2a2a"/><text x="253" y="261" text-anchor="middle" class="mono" font-size="11" fill="#9a9a9a">Tailwind</text><rect x="301.0" y="244" width="64" height="26" rx="13" fill="none" stroke="#2a2a2a"/><text x="333" y="261" text-anchor="middle" class="mono" font-size="11" fill="#9a9a9a">Vercel</text>
+<text x="568" y="44" text-anchor="end" class="mono" font-size="14" fill="#6b6b6b">↗</text>
+<g transform="translate(350 22)">
+<style>.sun{animation:arc 8s ease-in-out infinite;offset-path:path("M10 110 Q110 -10 210 110")}@keyframes arc{0%{offset-distance:0%}50%{offset-distance:100%}100%{offset-distance:0%}}
+.b{animation:grow 3s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom}@keyframes grow{from{transform:scaleY(.3)}to{transform:scaleY(1)}}</style>
+<path d="M10 110 Q110 -10 210 110" fill="none" stroke="#ff5e1f" stroke-opacity=".35" stroke-dasharray="2 6"/>
+<circle class="sun" r="9" fill="#ff5e1f"><animate attributeName="opacity" values="1;.8;1" dur="2s" repeatCount="indefinite"/></circle>
+<g fill="#ededed" fill-opacity=".8">
+<rect class="b" x="40" y="80" width="10" height="30" rx="2" style="animation-delay:-.3s"/>
+<rect class="b" x="60" y="62" width="10" height="48" rx="2" style="animation-delay:-1.1s"/>
+<rect class="b" x="80" y="50" width="10" height="60" rx="2" style="animation-delay:-2s"/>
+<rect class="b" x="100" y="44" width="10" height="66" rx="2" style="animation-delay:-.6s"/>
+<rect class="b" x="120" y="52" width="10" height="58" rx="2" style="animation-delay:-1.6s"/>
+<rect class="b" x="140" y="66" width="10" height="44" rx="2" style="animation-delay:-2.4s"/>
+<rect class="b" x="160" y="84" width="10" height="26" rx="2" style="animation-delay:-.9s"/>
+</g>
+<text x="110" y="134" text-anchor="middle" class="mono" font-size="12" fill="#ff5e1f">today · kWh</text>
+</g>
+</svg>
