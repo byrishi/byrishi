@@ -63,14 +63,14 @@ const THEMES = {
   dark: {
     bg: '#0d0d0d', grid: '#262626', ink: '#edeae4', mute: '#9a958d', outline: '#0d0d0d',
     sky: ['#0d0d0d', '#1a0f14', '#2b1218', '#5a2333', '#8a3a3a'], haze: '#fa5a00',
-    city: '#100c10', back: '#3a1a24', rim: '#fa5a00', win: '#ffd9a8', road: '#0d0d0d', lane: '#262626',
+    city: '#100c10', back: '#2a141b', rim: '#fa5a00', win: '#ffd9a8', road: '#0d0d0d', lane: '#262626',
     panel: '#141414', panelLine: '#2a2a2a', cells: ['#262626', '#5a2333', '#8b5a8a', '#c9b0e6', '#fa5a00'],
     barDim: '#262626', starOff: '#2a2a2a', band: '#0d0d0d',
   },
   light: {
     bg: '#f6ede2', grid: '#ddcbbd', ink: '#2b1218', mute: '#6e4a52', outline: '#f6ede2',
     sky: ['#f6ede2', '#f3e2d6', '#ecc9c4', '#d9a7b8', '#c9b0e6'], haze: '#fa5a00',
-    city: '#2b1218', back: '#d9a7b8', rim: '#fa5a00', win: '#ffe7c2', road: '#efe2d4', lane: '#c9a99a',
+    city: '#2b1218', back: '#e2bcc6', rim: '#fa5a00', win: '#ffe7c2', road: '#efe2d4', lane: '#c9a99a',
     panel: '#2b1218', panelLine: '#5a2333', cells: ['#3d1c25', '#5a2333', '#8b5a8a', '#c9b0e6', '#fa5a00'],
     barDim: '#ddcbbd', starOff: '#ddcbbd', band: '#f6ede2',
   },
@@ -114,7 +114,7 @@ function draw(t) {
   let back = '', towers = '', rims = '', wins = '', sparks = '', months = '', beacon = '';
   // distant hazy row for depth (not data)
   for (let x = -10; x < W; ) {
-    const w = 18 + rnd() * 34, h = 40 + rnd() * 70;
+    const w = 18 + rnd() * 34, h = 14 + rnd() * 34;
     back += `<rect x="${x.toFixed(1)}" y="${(HORIZON - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}"/>`;
     x += w + 2;
   }
@@ -122,7 +122,7 @@ function draw(t) {
   let lastMonth = '';
   weekly.forEach((c, i) => {
     const x = X0 + i * bw + gap / 2, w = bw - gap;
-    const h = Math.round(12 + (c / maxWeek) * TMAX);
+    const h = Math.round(12 + Math.sqrt(c / maxWeek) * TMAX); // sqrt keeps quiet weeks readable next to a big one
     const y = HORIZON - h;
     towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="${h}" rx="1.5"/>`;
     rims += `<rect x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="2.2" rx="1"/>`;
