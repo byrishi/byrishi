@@ -112,16 +112,17 @@ function draw(t) {
   // skyline: one tower per week, height in proportion to that week's contributions
   const X0 = 352, bw = (W - X0 - 4) / weekly.length, gap = 3, TMAX = 98; // start right of the minimap so every week is visible
   let back = '', towers = '', rims = '', wins = '', sparks = '', months = '', beacon = '';
-  // distant hazy row for depth (not data)
-  for (let x = -10; x < W; ) {
-    const w = 18 + rnd() * 34, h = 14 + rnd() * 34;
-    back += `<rect x="${x.toFixed(1)}" y="${(HORIZON - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}"/>`;
-    x += w + 2;
-  }
   const bestWeek = weekly.indexOf(Math.max(...weekly));
   let lastMonth = '';
   weekly.forEach((c, i) => {
     const x = X0 + i * bw + gap / 2, w = bw - gap;
+    const first = weeks[i]?.contributionDays?.[0]?.date;
+    if (first) {
+      const m = new Date(first + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase();
+      if (m !== lastMonth && i > 0) months += `<text x="${(x + 1).toFixed(1)}" y="${HORIZON + 13}" class="tiny">${m}</text>`;
+      lastMonth = m;
+    }
+    if (c === 0) return; // no contributions that week: empty lot, no building
     const h = Math.round(12 + Math.sqrt(c / maxWeek) * TMAX); // sqrt keeps quiet weeks readable next to a big one
     const y = HORIZON - h;
     towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="${h}" rx="1.5"/>`;
@@ -139,12 +140,6 @@ function draw(t) {
     if (i === bestWeek && c > 0) {
       const bx = x + w / 2;
       beacon = `<rect x="${(bx - 0.9).toFixed(1)}" y="${y - 16}" width="1.8" height="16" fill="${t.city}"/><circle class="beacon" cx="${bx.toFixed(1)}" cy="${y - 18}" r="3.2"/>`;
-    }
-    const first = weeks[i]?.contributionDays?.[0]?.date;
-    if (first) {
-      const m = new Date(first + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase();
-      if (m !== lastMonth && i > 0) months += `<text x="${(x + 1).toFixed(1)}" y="${HORIZON + 13}" class="tiny">${m}</text>`;
-      lastMonth = m;
     }
   });
   const palm = (x, h, k = 1) => `<g transform="translate(${x} ${HORIZON + 2}) scale(${k})"><path d="M0 0 C2 -${h * 0.4} 6 -${h * 0.8} 4 -${h}" stroke="${t.city}" stroke-width="4" fill="none" stroke-linecap="round"/>
@@ -234,7 +229,6 @@ text{fill:${t.ink}}
 <g class="grid" opacity=".55">${grid}</g>
 <g class="sun" clip-path="url(#skyclip)">${sun}</g>
 <rect y="${HORIZON - 120}" width="${W}" height="120" fill="url(#haze)"/>
-<g fill="${t.back}">${back}</g>
 <g fill="${t.city}">${towers}</g>
 <g fill="${t.rim}" opacity=".85">${rims}</g>
 <g class="win">${wins}</g><g class="spk">${sparks}</g>
