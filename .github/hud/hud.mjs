@@ -63,14 +63,14 @@ const THEMES = {
   dark: {
     bg: '#0d0d0d', grid: '#262626', ink: '#edeae4', mute: '#9a958d', outline: '#0d0d0d',
     sky: ['#0d0d0d', '#1a0f14', '#2b1218', '#5a2333', '#8a3a3a'], haze: '#fa5a00',
-    city: '#0d0d0d', win: '#edeae4', road: '#0d0d0d', lane: '#262626',
+    city: '#100c10', back: '#3a1a24', rim: '#fa5a00', win: '#ffd9a8', road: '#0d0d0d', lane: '#262626',
     panel: '#141414', panelLine: '#2a2a2a', cells: ['#262626', '#5a2333', '#8b5a8a', '#c9b0e6', '#fa5a00'],
     barDim: '#262626', starOff: '#2a2a2a', band: '#0d0d0d',
   },
   light: {
     bg: '#f6ede2', grid: '#ddcbbd', ink: '#2b1218', mute: '#6e4a52', outline: '#f6ede2',
     sky: ['#f6ede2', '#f3e2d6', '#ecc9c4', '#d9a7b8', '#c9b0e6'], haze: '#fa5a00',
-    city: '#2b1218', win: '#f6ede2', road: '#efe2d4', lane: '#c9a99a',
+    city: '#2b1218', back: '#d9a7b8', rim: '#fa5a00', win: '#ffe7c2', road: '#efe2d4', lane: '#c9a99a',
     panel: '#2b1218', panelLine: '#5a2333', cells: ['#3d1c25', '#5a2333', '#8b5a8a', '#c9b0e6', '#fa5a00'],
     barDim: '#ddcbbd', starOff: '#ddcbbd', band: '#f6ede2',
   },
@@ -109,23 +109,42 @@ function draw(t) {
     if (d <= SR && y < HORIZON) sun += `<circle cx="${x}" cy="${y}" r="${(3.2 - (d / SR) * 1.2).toFixed(2)}"/>`;
   }
 
-  // skyline: one tower per week, height = that week's contributions; windows are dots
-  const bw = W / weekly.length;
-  let towers = '', wins = '', sparks = '';
+  // skyline: one tower per week, height in proportion to that week's contributions
+  const X0 = 352, bw = (W - X0 - 4) / weekly.length, gap = 3, TMAX = 98; // start right of the minimap so every week is visible
+  let back = '', towers = '', rims = '', wins = '', sparks = '', months = '', beacon = '';
+  // distant hazy row for depth (not data)
+  for (let x = -10; x < W; ) {
+    const w = 18 + rnd() * 34, h = 40 + rnd() * 70;
+    back += `<rect x="${x.toFixed(1)}" y="${(HORIZON - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}"/>`;
+    x += w + 2;
+  }
+  const bestWeek = weekly.indexOf(Math.max(...weekly));
+  let lastMonth = '';
   weekly.forEach((c, i) => {
-    const x = i * bw;
-    let h = 22 + Math.round((c / maxWeek) * 112) + Math.round(rnd() * 12);
-    if (x > 840) h = Math.min(h, 80); // keep the cash/text corner clear
+    const x = X0 + i * bw + gap / 2, w = bw - gap;
+    const h = Math.round(12 + (c / maxWeek) * TMAX);
     const y = HORIZON - h;
-    towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${(bw + 0.6).toFixed(1)}" height="${h}"/>`;
-    if (rnd() < 0.25) towers += `<rect x="${(x + bw * 0.4).toFixed(1)}" y="${y - 10}" width="1.4" height="10"/>`;
-    const density = 0.1 + (c / maxWeek) * 0.55;
-    for (let wy = y + 7; wy < HORIZON - 6; wy += 8) for (let wx = x + 5; wx < x + bw - 4; wx += 6) {
-      if (rnd() < density) {
-        const dot = `<circle cx="${wx.toFixed(1)}" cy="${wy}" r="1.2"`;
-        if (rnd() < 0.05) sparks += `${dot} style="animation-delay:-${(rnd() * 6).toFixed(1)}s"/>`;
-        else wins += `${dot}/>`;
+    towers += `<rect x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="${h}" rx="1.5"/>`;
+    rims += `<rect x="${x.toFixed(1)}" y="${y}" width="${w.toFixed(1)}" height="2.2" rx="1"/>`;
+    // window grid: 3 columns, lit share grows with the week's activity
+    const lit = c === 0 ? 0.04 : 0.25 + (c / maxWeek) * 0.6;
+    for (let wy = y + 7; wy < HORIZON - 7; wy += 8) for (let k = 0; k < 3; k++) {
+      const wx = x + 3 + k * ((w - 6) / 2) - 1.5;
+      if (rnd() < lit) {
+        const r = `<rect x="${wx.toFixed(1)}" y="${wy}" width="3" height="4" rx=".6"`;
+        if (rnd() < 0.06) sparks += `${r} style="animation-delay:-${(rnd() * 6).toFixed(1)}s"/>`;
+        else wins += `${r}/>`;
       }
+    }
+    if (i === bestWeek && c > 0) {
+      const bx = x + w / 2;
+      beacon = `<rect x="${(bx - 0.9).toFixed(1)}" y="${y - 16}" width="1.8" height="16" fill="${t.city}"/><circle class="beacon" cx="${bx.toFixed(1)}" cy="${y - 18}" r="3.2"/>`;
+    }
+    const first = weeks[i]?.contributionDays?.[0]?.date;
+    if (first) {
+      const m = new Date(first + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }).toUpperCase();
+      if (m !== lastMonth && i > 0) months += `<text x="${(x + 1).toFixed(1)}" y="${HORIZON + 13}" class="tiny">${m}</text>`;
+      lastMonth = m;
     }
   });
   const palm = (x, h, k = 1) => `<g transform="translate(${x} ${HORIZON + 2}) scale(${k})"><path d="M0 0 C2 -${h * 0.4} 6 -${h * 0.8} 4 -${h}" stroke="${t.city}" stroke-width="4" fill="none" stroke-linecap="round"/>
@@ -188,7 +207,9 @@ text{fill:${t.ink}}
 .grid{fill:${t.grid}}
 .sun circle{fill:${SPARK}}
 .sun{animation:sun 6s ease-in-out infinite}@keyframes sun{50%{opacity:.75}}
-.win{fill:${t.win};opacity:.55}
+.win{fill:${t.win};opacity:.8}
+.tiny{font-family:JB;font-size:9px;letter-spacing:.8px;fill:${t.mute}}
+.beacon{fill:${SPARK};animation:bk 1.4s steps(1) infinite}@keyframes bk{50%{opacity:.15}}
 .spk{fill:${SPARK};animation:flick 6s steps(1) infinite}@keyframes flick{0%,40%{opacity:1}41%,60%{opacity:.15}61%{opacity:1}}
 .car{animation:drive linear infinite}@keyframes drive{from{transform:translateX(-60px)}to{transform:translateX(1260px)}}
 .carL{animation:driveL linear infinite}@keyframes driveL{from{transform:translateX(1260px)}to{transform:translateX(-60px)}}
@@ -213,10 +234,14 @@ text{fill:${t.ink}}
 <g class="grid" opacity=".55">${grid}</g>
 <g class="sun" clip-path="url(#skyclip)">${sun}</g>
 <rect y="${HORIZON - 120}" width="${W}" height="120" fill="url(#haze)"/>
+<g fill="${t.back}">${back}</g>
 <g fill="${t.city}">${towers}</g>
+<g fill="${t.rim}" opacity=".85">${rims}</g>
 <g class="win">${wins}</g><g class="spk">${sparks}</g>
-${palm(150, 120, 1)}${palm(196, 92, 0.85)}${palm(1010, 70, 0.8)}${palm(1120, 58, 0.7)}
+${beacon}
+${palm(150, 120, 1)}${palm(196, 92, 0.85)}
 <rect y="${HORIZON}" width="${W}" height="${H - HORIZON}" fill="${t.road}"/>
+${months}
 <g fill="${t.lane}">${Array.from({ length: 60 }, (_, i) => `<circle cx="${i * 20 + 10}" cy="${HORIZON + 26}" r="1.4"/>`).join('')}</g>
 <g>${Array.from({ length: 7 }, (_, i) => `<rect class="car" x="0" y="${HORIZON + 19}" width="14" height="3" rx="1.5" fill="${SPARK}" style="animation-duration:${(7 + i * 1.3).toFixed(1)}s;animation-delay:-${(i * 2.1).toFixed(1)}s"/>`).join('')}
 ${Array.from({ length: 7 }, (_, i) => `<rect class="carL" x="0" y="${HORIZON + 31}" width="14" height="3" rx="1.5" fill="${LILAC}" style="animation-duration:${(6 + i * 1.1).toFixed(1)}s;animation-delay:-${(i * 1.7).toFixed(1)}s"/>`).join('')}</g>
@@ -242,9 +267,9 @@ ${txt(RX + 204, RY + RH + 38, `BEST ${best}D`, 'mono')}
 <!-- wanted + cash -->
 ${stars}
 <g clip-path="url(#cash)">${odo}</g>
-<g class="dl">${txt(MX, MY + 40, `+$${fmt(week * RATE)}`, 'delta', 'text-anchor="end"')}</g>
-${txt(MX, MY + 70, 'contributions this year, paid in cash', 'hand', 'text-anchor="end"')}
-${txt(MX, MY + 94, `${repos} OPEN REPOS · @${login.toUpperCase()}`, 'mono', 'text-anchor="end"')}
+<g class="dl">${txt(MX, MY + 36, `+$${fmt(week * RATE)}`, 'delta', 'text-anchor="end"')}</g>
+${txt(MX, MY + 62, 'contributions this year, paid in cash', 'hand', 'text-anchor="end"')}
+${txt(MX, MY + 84, `${repos} OPEN REPOS · @${login.toUpperCase()}`, 'mono', 'text-anchor="end"')}
 ${txt(MX, H - 22, `ANKLESHWAR · ${stamp}`, 'mono mute', 'text-anchor="end"')}
 
 <!-- mission passed -->
