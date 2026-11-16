@@ -1,4 +1,4 @@
-<a href="https://rishishah.in"><img src="assets/ui/hero-ascii.svg" width="100%" alt="RISHI SHAH in ASCII block letters with an animated ASCII portrait"></a>
+<a href="https://rishishah.in"><img src="assets/ui/hero-ascii.svg" width="100%" alt="RISHI SHAH in dithered letters next to a spinning ASCII globe pinned on Ankleshwar, India"></a>
 
 <p align="center"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=15&duration=2600&pause=1400&color=FA5A00&center=true&vCenter=true&width=830&height=32&lines=.%2Fwhoami%20%E2%86%92%20growth%20manager%20%C2%B7%20builder%20%C2%B7%20producer;now%20shipping%3A%20punchcutter%20%E2%80%94%20a%20font%20family%20from%20one%20sentence;relay%20%C2%B7%20helio%20%C2%B7%20punchcutter%20%E2%80%94%20all%20free%2C%20all%20open%20source;open%20to%20consulting%20%26%20strategy%20roles" alt="growth manager, builder, producer. Now shipping Punchcutter." /></p>
 
@@ -187,17 +187,8 @@ I’m particularly interested in **strategy, market analysis, operating models, 
   <img alt="09 Contact" src="assets/ui/h-contact-dark.svg" width="100%">
 </picture>
 
-<table><tr>
-<td width="140">
-<img alt="ASCII portrait of Rishi" src="assets/ui/face-ascii.svg" width="130">
-</td>
-<td>
-
 **Say hi.** rishi [at] rishishah [dot] in
 
 [rishishah.in](https://rishishah.in) · [X](https://x.com/rishhishah) · [LinkedIn](https://www.linkedin.com/in/rishhishah) · [Peerlist](https://peerlist.io/rishhishah) · [Product Hunt](https://www.producthunt.com/@byrishi) · [Medium](https://rishhishah.medium.com)
 
 <sub><code>ANKLESHWAR, IN</code> · <code>21.63°N 73.00°E</code> · open to consulting & strategy roles</sub>
-
-</td>
-</tr></table>
