@@ -1,10 +1,6 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-  <img alt="Rishi Shah" src="assets/banner-dark.svg" width="100%">
-</picture>
+<a href="https://rishishah.in"><img src="assets/ui/hero-ascii.svg" width="100%" alt="RISHI SHAH in ASCII block letters with an animated ASCII portrait"></a>
 
-<br>
+<p align="center"><img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=15&duration=2600&pause=1400&color=FA5A00&center=true&vCenter=true&width=830&height=32&lines=.%2Fwhoami%20%E2%86%92%20growth%20manager%20%C2%B7%20builder%20%C2%B7%20producer;now%20shipping%3A%20punchcutter%20%E2%80%94%20a%20font%20family%20from%20one%20sentence;relay%20%C2%B7%20helio%20%C2%B7%20punchcutter%20%E2%80%94%20all%20free%2C%20all%20open%20source;open%20to%20consulting%20%26%20strategy%20roles" alt="growth manager, builder, producer. Now shipping Punchcutter." /></p>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-profile-dark.svg">
@@ -18,23 +14,23 @@ My background spans **SaaS, product management, creative systems, and early-stag
 
 I’m particularly interested in **strategy, market analysis, operating models, and execution planning**.
 
-<br>
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-lens-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/ui/h-lens-light.svg">
   <img alt="02 Consulting Lens" src="assets/ui/h-lens-dark.svg" width="100%">
 </picture>
 
-| CH | CAPABILITY |
-|:--:|:--|
-| `01` | Problem structuring & hypothesis-driven thinking |
-| `02` | Market & user analysis |
-| `03` | Product and GTM alignment |
-| `04` | Operating under constraints |
-| `05` | Decision-making with incomplete information |
-
-<br>
+```txt
+╭─[ CONSULTING LENS ]──────────────────────────────────────╮
+│                                                          │
+│  [01]  Problem structuring & hypothesis-driven thinking  │
+│  [02]  Market & user analysis                            │
+│  [03]  Product and GTM alignment                         │
+│  [04]  Operating under constraints                       │
+│  [05]  Decision-making with incomplete information       │
+│                                                          │
+╰──────────────────────────────────────────────────[ ▓▒░ ]─╯
+```
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-experience-dark.svg">
@@ -43,7 +39,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 </picture>
 
 <details>
-<summary><code>A</code>&nbsp;&nbsp;<b>Product & Business Ownership</b></summary>
+<summary><code>[A]</code>&nbsp;&nbsp;<b>Product & Business Ownership</b></summary>
 
 - End-to-end ownership across multiple product initiatives  
 - Framing ambiguous business problems into executable roadmaps  
@@ -53,7 +49,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 </details>
 
 <details>
-<summary><code>B</code>&nbsp;&nbsp;<b>Entrepreneurial & Zero-to-One Work</b></summary>
+<summary><code>[B]</code>&nbsp;&nbsp;<b>Entrepreneurial & Zero-to-One Work</b></summary>
 
 - Built and launched SaaS products with real users  
 - Worked across ideation, validation, execution, and iteration  
@@ -62,7 +58,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 </details>
 
 <details>
-<summary><code>C</code>&nbsp;&nbsp;<b>Creative Systems as Leverage</b></summary>
+<summary><code>[C]</code>&nbsp;&nbsp;<b>Creative Systems as Leverage</b></summary>
 
 - Led scalable creative workflows and communities  
 - Used storytelling and design to improve clarity and adoption  
@@ -70,11 +66,10 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 </details>
 
-<br>
-
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/divider-dark.svg">
-  <img alt="" src="assets/divider-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ui/divider-dither-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/ui/divider-dither-light.svg">
+  <img alt="" src="assets/ui/divider-dither-dark.svg" width="100%">
 </picture>
 
 <picture>
@@ -83,10 +78,18 @@ I’m particularly interested in **strategy, market analysis, operating models, 
   <img alt="04 Things I've made" src="assets/ui/h-made-dark.svg" width="100%">
 </picture>
 
+<a href="https://github.com/byrishi/punchcutter"><img src="assets/projects/punchcutter-dither.svg" width="100%" alt="Punchcutter: describe a typeface, get a font family"></a>
+
+**[Punchcutter](https://github.com/byrishi/punchcutter)** · A type foundry that lives inside Claude, ChatGPT, Codex and other AI agents. Describe a typeface, or write on paper and send a photo, and get back a real font family with its own Studio app.
+
+<sub><a href="https://byrishi.github.io/punchcutter/">Docs</a> · <a href="https://github.com/byrishi/punchcutter">Source</a> · MIT</sub>
+
+<a href="https://skills.sh/byrishi/punchcutter"><img src="https://skills.sh/b/byrishi/punchcutter" alt="skills.sh" /></a>&nbsp;&nbsp;<a href="https://github.com/byrishi/punchcutter/stargazers"><img src="https://img.shields.io/github/stars/byrishi/punchcutter?style=flat-square&label=stars&color=5f6b2f&labelColor=141709" alt="Punchcutter stars" /></a>&nbsp;&nbsp;<a href="https://github.com/byrishi/punchcutter/commits"><img src="https://img.shields.io/github/last-commit/byrishi/punchcutter?style=flat-square&label=last%20commit&color=5f6b2f&labelColor=141709" alt="Punchcutter last commit" /></a>
+
 <table>
   <tr>
     <td width="50%" valign="top">
-      <p><a href="https://relay.rishishah.in"><img src="assets/projects/relay.svg" width="100%" alt="Relay: send files straight to another device" /></a></p>
+      <p><a href="https://relay.rishishah.in"><img src="assets/projects/relay-dither.svg" width="100%" alt="Relay: send files straight to another device" /></a></p>
       <p><b><a href="https://relay.rishishah.in">Relay</a></b> · Free, peer-to-peer file transfer in the browser. End-to-end encrypted, nothing uploaded, no account, no size limit.</p>
       <p><sub><a href="https://relay.rishishah.in">relay.rishishah.in</a> · <a href="https://github.com/byrishi/Relay">Source</a> · Apache-2.0</sub></p>
       <p>
@@ -95,7 +98,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
       </p>
     </td>
     <td width="50%" valign="top">
-      <p><a href="https://helio.rishishah.in"><img src="assets/projects/helio.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a></p>
+      <p><a href="https://helio.rishishah.in"><img src="assets/projects/helio-dither.svg" width="100%" alt="Helio: know exactly what your roof made today" /></a></p>
       <p><b><a href="https://helio.rishishah.in">Helio</a></b> · A free, open-source dashboard that shows exactly what your rooftop solar made today.</p>
       <p><sub><a href="https://helio.rishishah.in">helio.rishishah.in</a> · <a href="https://helio.rishishah.in/demo">Live demo</a> · <a href="https://github.com/byrishi/helio">Source</a> · MIT</sub></p>
       <p>
@@ -106,12 +109,10 @@ I’m particularly interested in **strategy, market analysis, operating models, 
   </tr>
 </table>
 
-| MODULE | DESCRIPTION |
+| `MODULE` | `DESCRIPTION` |
 |:--|:--|
 | **[Zenodo Certificate Maker](https://github.com/byrishi/ZENODO_CERT_MAKER)** | Turns a Zenodo record into a print-ready A4 certificate, because academia wants paper. |
 | **[VaultNote](https://github.com/byrishi/Vault-Note)** | Local-first encrypted notes. Everything is sealed in your browser with AES-GCM. |
-
-<br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-activity-dark.svg">
@@ -129,21 +130,17 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 <sub>Cash = contributions this year × $100 · wanted stars = the last 7 days · skyline = one tower per week · minimap = the last 22 weeks. Redrawn every hour.</sub>
 
-<br>
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-sound-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/ui/h-sound-light.svg">
   <img alt="06 Sound" src="assets/ui/h-sound-dark.svg" width="100%">
 </picture>
 
-| OUT | CHANNEL |
-|:--|:--|
+| `OUT` | `CHANNEL` |
+|:--:|:--|
 | `L` | [Thepla Theorist](https://direct.me/theplatheorist) |
 | `R` | [Rishi Shah Beatz](https://www.hopp.bio/rishishahbeatz) |
 | `≡` | [Discography](https://links.rishishah.in/discography) |
-
-<br>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-stack-dark.svg">
@@ -151,18 +148,26 @@ I’m particularly interested in **strategy, market analysis, operating models, 
   <img alt="07 Stack" src="assets/ui/h-stack-dark.svg" width="100%">
 </picture>
 
-| MODULE | COMPONENTS |
-|:--|:--|
-| `FRONTEND` | Next.js · React · TypeScript · Vite · Tailwind · shadcn/ui · GSAP · Lenis · WebGL / GLSL |
-| <code>BACKEND&nbsp;&amp;&nbsp;BOTS</code> | Python · FastAPI · Node.js · Express · python-telegram-bot · Telegram Mini Apps |
-| <code>REAL‑TIME&nbsp;&amp;&nbsp;MEDIA</code> | WebRTC · Web Audio · Web Crypto · ffmpeg · yt-dlp |
-| `SHIP` | Vercel · Render · Oracle Cloud · Cloudflare · Docker · GitHub Actions |
-
-<br>
+```txt
+┌─[ STACK ]──────────────┬─────────────────────────────────────────────────┐
+│ FRONTEND               │ Next.js · React · TypeScript · Vite · Tailwind  │
+│                        │ shadcn/ui · GSAP · Lenis · WebGL / GLSL         │
+├────────────────────────┼─────────────────────────────────────────────────┤
+│ BACKEND & BOTS         │ Python · FastAPI · Node.js · Express            │
+│                        │ python-telegram-bot · Telegram Mini Apps        │
+├────────────────────────┼─────────────────────────────────────────────────┤
+│ REAL-TIME & MEDIA      │ WebRTC · Web Audio · Web Crypto · ffmpeg        │
+│                        │ yt-dlp                                          │
+├────────────────────────┼─────────────────────────────────────────────────┤
+│ SHIP                   │ Vercel · Render · Oracle Cloud · Cloudflare     │
+│                        │ Docker · GitHub Actions                         │
+└────────────────────────┴─────────────────────────────────────────────────┘
+```
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/divider-dark.svg">
-  <img alt="" src="assets/divider-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ui/divider-dither-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/ui/divider-dither-light.svg">
+  <img alt="" src="assets/ui/divider-dither-dark.svg" width="100%">
 </picture>
 
 <picture>
@@ -171,10 +176,10 @@ I’m particularly interested in **strategy, market analysis, operating models, 
   <img alt="08 How I Think" src="assets/ui/h-think-dark.svg" width="100%">
 </picture>
 
-> Strategy is choosing what not to build.  
-> Execution is making the right things inevitable.
-
-<br>
+```txt
+  ▓▒░  Strategy is choosing what not to build.
+  ▓▒░  Execution is making the right things inevitable.
+```
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ui/h-contact-dark.svg">
@@ -184,10 +189,7 @@ I’m particularly interested in **strategy, market analysis, operating models, 
 
 <table><tr>
 <td width="140">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/face-blink-dark.svg">
-  <img alt="Hand-drawn portrait of Rishi" src="assets/face-blink-light.svg" width="130">
-</picture>
+<img alt="ASCII portrait of Rishi" src="assets/ui/face-ascii.svg" width="130">
 </td>
 <td>
 
